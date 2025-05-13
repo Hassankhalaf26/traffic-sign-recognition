@@ -86,9 +86,11 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 ## 📊 Evaluation
 
-The model prints classification report and plots the confusion matrix.
+# Confusion Matrix
 
-![confusion matrix]("data\confusion%matrix.png")
+This is the confusion matrix for the traffic sign classification model:
+
+![confusion matrix](data/confusion%20matrix.png)
 
 
 
