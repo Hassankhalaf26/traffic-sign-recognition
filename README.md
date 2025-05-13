@@ -88,7 +88,7 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 The model prints classification report and plots the confusion matrix.
 
-![confusion matrix]("data\confusion matrix.png")
+![confusion matrix]("data\confusion%matrix.png")
 
 
 
@@ -109,7 +109,8 @@ The model prints classification report and plots the confusion matrix.
 Upload a traffic sign image (JPG/PNG). The app returns the predicted class in JSON.
 
 ---
-![Speed limit (70km/h)]("data\Speed limit 70kmh.png")
+![Speed limit (70km/h)](data/Speed%20limit%2070kmh.png)
+
 ##
 
 ---
