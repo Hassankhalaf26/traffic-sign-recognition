@@ -77,7 +77,7 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 ## 🧬 Model Info
 
-* Algorithm: SVM (linear kernel)
+* Algorithm: SVM 
 * Input: 15x15 RGB images (flattened)
 * Classes: 43 traffic sign types
 * Normalization: StandardScaler
