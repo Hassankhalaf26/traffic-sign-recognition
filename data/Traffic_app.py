@@ -77,30 +77,13 @@ def upload():
         return jsonify({'error': 'No selected file'}), 400
 
     try:
-        # 1. Load image and convert to RGB
+        # Open and process image
         image = Image.open(file.stream).convert('RGB')
-
-        # 2. Convert PIL image to NumPy array
-        image_np = np.array(image)
-
-        # 3. Convert to Grayscale
-        gray = cv2.cvtColor(image_np, cv2.COLOR_RGB2GRAY)
-
-        # 4. Apply Histogram Equalization
-        equalized = cv2.equalizeHist(gray)
-
-        # 5. Convert back to RGB for consistency (if needed)
-        enhanced_rgb = cv2.cvtColor(equalized, cv2.COLOR_GRAY2RGB)
-
-        # 6. Convert back to PIL to resize
-        enhanced_image = Image.fromarray(enhanced_rgb)
-        enhanced_image = enhanced_image.resize((15, 15))
-
-        # 7. Flatten and scale
-        image_array = np.array(enhanced_image).flatten().reshape(1, -1)
+        image = image.resize((15, 15))
+        image_array = np.array(image).flatten().reshape(1, -1)
         image_scaled = scaler.transform(image_array)
 
-        # 8. Predict
+        # Predict
         prediction = model.predict(image_scaled)[0]
         label = CLASS_LABELS.get(prediction, f"Class {prediction}")
 
@@ -108,6 +91,7 @@ def upload():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True,use_reloader=False)
