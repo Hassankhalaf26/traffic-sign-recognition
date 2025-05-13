@@ -1,0 +1,8 @@
+Train/
+Test/
+Meta/
+*.csv
+*.joblib
+uploads/
+__pycache__/
+*.pyc

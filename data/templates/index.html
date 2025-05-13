@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="mb-4">🚦 Upload a Traffic Sign Image</h2>
+
+    <!-- Upload Form -->
+    <form id="upload-file" method="post" enctype="multipart/form-data" action="/upload">
+        <label for="imageUpload" class="upload-label">
+            📁 Choose Image
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" required>
+        <br>
+        <button type="submit" class="btn btn-primary mt-3" id="btn-predict">
+            🔍 Predict Sign
+        </button>
+    </form>
+
+    <!-- Image Preview Section -->
+    <div class="image-section mt-4" style="display: none;">
+        <div class="img-preview" id="imagePreview"></div>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader mt-4" id="loader" style="display: none;"></div>
+
+    <!-- Prediction Result -->
+    <div id="result" class="mt-4">
+        <span></span>
+    </div>
+</div>
+
+<script>
+    document.getElementById("imageUpload").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById("imagePreview");
+                imagePreview.innerHTML = "";
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                imagePreview.appendChild(img);
+                document.querySelector(".image-section").style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById("upload-file").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const loader = document.getElementById("loader");
+        const result = document.getElementById("result").querySelector("span");
+        loader.style.display = "block";
+        result.textContent = "";
+
+        const formData = new FormData(this);
+
+        fetch("/upload", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            loader.style.display = "none";
+            result.textContent = `🧠 Prediction: ${data.prediction}`;
+        })
+        .catch(err => {
+            loader.style.display = "none";
+            result.textContent = "❌ Error: Could not process the image.";
+            console.error(err);
+        });
+    });
+</script>
+{% endblock %}
