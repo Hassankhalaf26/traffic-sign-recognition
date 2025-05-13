@@ -122,3 +122,17 @@ Upload a traffic sign image (JPG/PNG). The app returns the predicted class in JS
 * Add image augmentation
 * Integrate confidence scores
 * Deploy online using Render or HuggingFace Spaces
+##
+------
+
+## team members 
+* Hassan khalaf hassan   
+* Siraj Al-Din Asim
+* Girgis Imad Rizk
+* Ahmed Saleh Mohammed
+* Basil Amin Mohammed Ahmed
+* Ahmed Nasser Arman
+
+##
+
+
