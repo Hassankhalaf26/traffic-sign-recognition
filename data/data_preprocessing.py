@@ -3,7 +3,7 @@ from PIL import Image
 import os
 from sklearn.preprocessing import StandardScaler
 
-def load_data(project_dir, classes=43, image_size=(20, 20), max_images_per_class=5000):
+def load_data(project_dir, classes=43, image_size=(20, 20), max_images_per_class=2000):
     data = []
     labels = []
 
